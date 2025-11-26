@@ -9,7 +9,6 @@ def main() -> None:
     """
     print('Введите команду')
     command=input()
-
     if command=='fibbonachi recursive':
         print('Введите число')
         i=int(input())
@@ -63,11 +62,11 @@ def main() -> None:
                 print('Такой сортировки не существует или такой сортировкой нельзя сортировать строки')
         else:
             print("Выберите числа или строки")
-    if command=="stack":
+    elif command=="stack":
+        stack = Stack()
         while True:
             print("Введите метод")
             metod = input()
-            stack = Stack()
             if metod == 'peek':
                 print(stack.peek())
             elif metod == 'push':
@@ -83,5 +82,15 @@ def main() -> None:
                     stack.push(y1)
                 else:
                     print("Выберите число или строку")
+            elif metod=='pop':
+                print(stack.pop())
+            elif metod=='len':
+                print(stack.__len__())
+            elif metod=='is_empty':
+                print(stack.is_empty())
+            else:
+                print('такого метода не существует')
+    else:
+        print('Такой команды не существует')
 if __name__ == "__main__":
     main()

@@ -82,27 +82,10 @@ def heap_sort(a:list[int|str])->list[int|str]:
     return a
 
 def bucket_sort(a:list[float],bucket:int|None=None)->list[float]:
-    def sort_bucket(a:list[int])->None:
-        for i in range(1,len(a)):
-            n=a[i]
-            j=i-1
-            while j>=0 and a[j]>n:
-                a[j+1]=a[j]
-                j-=1
-            a[j+1]=n
-    if len(a)<2 or min(a)==max(a):
-        return a
+    if not a:
+        return []
     if bucket is None:
         bucket=len(a)
-    sp=[[] for _ in range(bucket)]
-    for num in a:
-        for i in range(len(sp)):
-            sp[i].append(num)
-    for i in sp:
-        sort_bucket(i)
-    index=0
-    for bucket1 in sp:
-        for num in bucket1:
-            a[index]=num
-            index+=1
-    return a
+    buckets=[[] for _ in range(bucket)]
+    for i in range(len(a)-1,-1,-1):
+        buckets.append()

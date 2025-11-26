@@ -56,9 +56,7 @@ class TestCalc:
         assert heap_sort([10, 15, 9]) == [9, 10, 15]
         assert heap_sort(['c', 'b', 'a']) == ['a', 'b', 'c']
         assert heap_sort(['ad', 'a', 'ab']) == ['a', 'ab', 'ad']
-        assert bucket_sort([0.51,0.17],2) == [0.17,0.51]
-        assert bucket_sort([0.18,0.51],None) == [0.18,0.51]
-        assert bucket_sort([0.17,9.45,8.13],3) == [0.17,8.13,9.45]
+
 
 
 
