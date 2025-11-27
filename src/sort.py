@@ -47,7 +47,7 @@ def counting_sort(a:list[int])->list[int]:
     return sp
 
 def radix_sort(a:list[int],base:int=10)->list[int]:
-    """На вход функции подаётся список, содержащий целые числа. Функция возвращает отсортированный по возрастанию массив при помощи поразрядной сортировки"""
+    """На вход функции подаётся список, содержащий целые числа и система счисления. Функция возвращает отсортированный по возрастанию массив при помощи поразрядной сортировки"""
     if not a:
         return []
     maxi=max([len(str(x)) for x in a])
@@ -87,5 +87,21 @@ def bucket_sort(a:list[float],bucket:int|None=None)->list[float]:
     if bucket is None:
         bucket=len(a)
     buckets=[[] for _ in range(bucket)]
-    for i in range(len(a)-1,-1,-1):
-        buckets.append()
+    for i in range(len(a)):
+        bi=int(bucket*(a[i]+10)/20)
+        buckets[bi].append(a[i])
+    while [] in buckets:
+        buckets.remove([])
+    for sp in buckets:
+        for j in range(len(sp)):
+            for i in range(1, len(sp)):
+                if sp[i - 1] > sp[i]:
+                    n = sp[i]
+                    sp[i] = sp[i - 1]
+                    sp[i - 1] = n
+    sp1=[]
+    for u in buckets:
+        for i in u:
+            sp1.append(i)
+    return sp1
+print(bucket_sort([8.42,3.47,9.45,9.41],4))
