@@ -1,5 +1,8 @@
-def bubble_sort(a:list[int|str])->list[int|str]:
-    """На вход функции подаётся список, содержащий целые числа. Функция возвращает отсортированный по возрастанию массив при помощи пузырькового метода"""
+from typing import TypeVar
+strandint=TypeVar('strandint',str,int)
+
+def bubble_sort(a:list[strandint])->list[strandint]:
+    """На вход функции подаётся список, содержащий целые числа или строки. Функция возвращает отсортированный по возрастанию массив при помощи пузырькового метода"""
     if not a:
         return []
     for j in range(len(a)):
@@ -9,9 +12,9 @@ def bubble_sort(a:list[int|str])->list[int|str]:
                 a[i] = a[i - 1]
                 a[i - 1] = n
     return a
-
-def quick_sort(a:list[int|str])->list[int|str]:
-    """На вход функции подаётся список, содержащий целые числа. Функция возвращает отсортированный по возрастанию массив при помощи быстрой сортировки"""
+strandint1=TypeVar('strandint1',str,int)
+def quick_sort(a:list[strandint1])->list[strandint1]:
+    """На вход функции подаётся список, содержащий целые числа или строки. Функция возвращает отсортированный по возрастанию массив при помощи быстрой сортировки"""
     if not a:
         return []
     else:
@@ -47,11 +50,11 @@ def counting_sort(a:list[int])->list[int]:
     return sp
 
 def radix_sort(a:list[int],base:int=10)->list[int]:
-    """На вход функции подаётся список, содержащий целые числа и система счисления. Функция возвращает отсортированный по возрастанию массив при помощи поразрядной сортировки"""
+    """На вход функции система исчисления и подаётся список, содержащий целые числа и система счисления. Функция возвращает отсортированный по возрастанию массив при помощи поразрядной сортировки"""
     if not a:
         return []
     maxi=max([len(str(x)) for x in a])
-    sp=[[] for _ in range(base)]
+    sp:list[list[int]]=[[] for _ in range(base)]
     for i in range(0,maxi):
         for x in a:
             digit=(x//base ** i)%base
@@ -59,16 +62,17 @@ def radix_sort(a:list[int],base:int=10)->list[int]:
         a=[x for i in sp for x in i]
         sp = [[] for _ in range(len(a))]
     return a
-
-def heap_sort(a:list[int|str])->list[int|str]:
+strandint2=TypeVar('strandint2',str,int)
+def heap_sort(a:list[strandint2])->list[strandint2]:
+    "На вход функции подаётся список содержащий строки или целые числа, функция возвращает отсортированный по возрастанию массив при помощи метода куч"
     if not a:
         return []
-    def heapy(a:list[int|str],n:int,i:int)->None:
+    def heapy(a:list[strandint2],n:int,i:int)->None:
         largest=i
-        l=2*i+1
+        l1=2*i+1
         r=2*i+2
-        if l<n and a[i]<a[l]:
-            largest=l
+        if l1<n and a[i]<a[l1]:
+            largest=l1
         if r<n and a[largest]<a[r]:
             largest=r
         if largest!=i:
@@ -82,11 +86,12 @@ def heap_sort(a:list[int|str])->list[int|str]:
     return a
 
 def bucket_sort(a:list[float],bucket:int|None=None)->list[float]:
+    "Функция принимает на вход список с вещественными числами и количество так называемых коробок(количество может быть и не указана). Функция возвращает массив отсортированный по возрастанию при помощи карманного метода"
     if not a:
         return []
     if bucket is None:
         bucket=len(a)
-    buckets=[[] for _ in range(bucket)]
+    buckets:list[list[float]]=[[] for _ in range(bucket)]
     for i in range(len(a)):
         bi=int(bucket*(a[i]+10)/20)
         buckets[bi].append(a[i])
@@ -99,9 +104,8 @@ def bucket_sort(a:list[float],bucket:int|None=None)->list[float]:
                     n = sp[i]
                     sp[i] = sp[i - 1]
                     sp[i - 1] = n
-    sp1=[]
+    sp1:list[float]=[]
     for u in buckets:
-        for i in u:
-            sp1.append(i)
+        for i in range(len(u)):
+            sp1.append(u[i])
     return sp1
-print(bucket_sort([8.42,3.47,9.45,9.41],4))
