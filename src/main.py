@@ -200,5 +200,3 @@ def main() -> None:
         print('Такой команды не существует')
 if __name__ == "__main__":
     main()
-
-
